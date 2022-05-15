@@ -17,7 +17,7 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
         imgid2info = {}
         shot = dataset_name.split('_')[-2].split('shot')[0]
         seed = int(dataset_name.split('_seed')[-1])
-        split_dir = os.path.join('datasets', 'dotasplit', 'seed{}'.format(seed))
+        split_dir = os.path.join('/home/aeen/fewshot/Datasets/dota/', 'dotasplit', 'seed{}'.format(seed))
         for idx, cls in enumerate(metadata["thing_classes"]):
             json_file = os.path.join(split_dir, "full_box_{}shot_{}_trainval.json".format(shot, cls))
             json_file = PathManager.get_local_path(json_file)
@@ -69,6 +69,9 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
 #             if obj["category_id"] in id_map:
 #                 obj["category_id"] = id_map[obj["category_id"]]
 #                 objs.append(obj)
+            objs.append(obj) #------------------ aein add
+#             print("anno = "+str(anno))
+#         print("objs = "+str(len(objs))
         record["annotations"] = objs
         dataset_dicts.append(record)
 
@@ -92,3 +95,4 @@ def register_meta_dota(name, metadata, imgdir, annofile):
         dirname="datasets/dota",
         **metadata,
     )
+    

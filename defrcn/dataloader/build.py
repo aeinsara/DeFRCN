@@ -151,7 +151,7 @@ def print_instances_class_histogram(dataset_dicts, class_names):
     num_classes = len(class_names)
     hist_bins = np.arange(num_classes + 1)
     histogram = np.zeros((num_classes,), dtype=np.int) 
-    print("dataset_dicts =  "+ str(dataset_dicts)+" " )
+#     print("dataset_dicts =  "+ str(dataset_dicts)+" " )
     for entry in dataset_dicts:
         annos = entry["annotations"]
         classes = [x["category_id"] for x in annos]    
@@ -207,6 +207,7 @@ def get_detection_dataset_dicts(
     """
     assert len(dataset_names)
     dataset_dicts = [DatasetCatalog.get(dataset_name) for dataset_name in dataset_names]
+#     print("dataset_dicts[0] = "+str(dataset_dicts[0][0]))
     for dataset_name, dicts in zip(dataset_names, dataset_dicts):
         assert len(dicts), "Dataset '{}' is empty!".format(dataset_name)
 
@@ -223,8 +224,9 @@ def get_detection_dataset_dicts(
     has_instances = "annotations" in dataset_dicts[0]
 #     if filter_empty and has_instances:
 #         dataset_dicts = filter_images_with_only_crowd_annotations(dataset_dicts)
-    if min_keypoints > 0 and has_instances:
-        dataset_dicts = filter_images_with_few_keypoints(dataset_dicts, min_keypoints)
+#     if min_keypoints > 0 and has_instances:
+#         dataset_dicts = filter_images_with_few_keypoints(dataset_dicts, min_keypoints)
+    print("dataset_dicts[0] = "+str(dataset_dicts[0]["annotations"]))
     if has_instances:
         try:
             class_names = MetadataCatalog.get(dataset_names[0]).thing_classes    
