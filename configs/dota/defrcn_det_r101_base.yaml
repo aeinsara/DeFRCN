@@ -1,0 +1,22 @@
+_BASE_: "../Base-RCNN.yaml"
+MODEL:
+  WEIGHTS: "/Path/to/ImageNet/Pretrain/Weight"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 101
+  RPN:
+    ENABLE_DECOUPLE: True
+    BACKWARD_SCALE: 0.0
+  ROI_HEADS:
+    NUM_CLASSES: 16
+    ENABLE_DECOUPLE: True
+    BACKWARD_SCALE: 0.75
+DATASETS:
+  TRAIN: ('dota_trainval_base',)
+  TEST: ('dota_test_base',)
+SOLVER:
+  IMS_PER_BATCH: 2
+  STEPS: (85000, 100000)
+  MAX_ITER: 15000
+  CHECKPOINT_PERIOD: 200000
+OUTPUT_DIR: "/Path/to/Output/Dir"

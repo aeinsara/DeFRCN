@@ -1,0 +1,169 @@
+[I 18:02:32.078 LabApp] jupyter_tensorboard extension loaded.
+[I 18:02:32.083 LabApp] JupyterLab extension loaded from /opt/conda/lib/python3.6/site-packages/jupyterlab
+[I 18:02:32.083 LabApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 18:02:32.084 LabApp] [Jupytext Server Extension] NotebookApp.contents_manager_class is (a subclass of) jupytext.TextFileContentsManager already - OK
+[I 18:02:32.084 LabApp] Serving notebooks from local directory: /
+[I 18:02:32.085 LabApp] The Jupyter Notebook is running at:
+[I 18:02:32.085 LabApp] http://hostname:8888/?token=6921db6294a7eabcd172858fb2ec908c5efe95a83ba68a3e
+[I 18:02:32.085 LabApp]  or http://127.0.0.1:9000/?token=6921db6294a7eabcd172858fb2ec908c5efe95a83ba68a3e
+[I 18:02:32.085 LabApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 18:02:32.088 LabApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/nbserver-14995-open.html
+    Or copy and paste one of these URLs:
+        http://hostname:8888/?token=6921db6294a7eabcd172858fb2ec908c5efe95a83ba68a3e
+     or http://127.0.0.1:9000/?token=6921db6294a7eabcd172858fb2ec908c5efe95a83ba68a3e
+[W 18:04:46.985 LabApp] Could not determine jupyterlab build status without nodejs
+[I 18:05:00.383 LabApp] New terminal with automatic name: 1
+TermSocket.open: 1
+TermSocket.open: Opened 1
+[I 18:10:15.198 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 18:10:15.902 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 18:13:20.347 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 18:26:45.251 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 18:27:23.386 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+Websocket closed
+[I 18:34:24.347 LabApp] New terminal with automatic name: 2
+TermSocket.open: 2
+TermSocket.open: Opened 2
+[I 18:36:10.925 LabApp] EOF on FD 17; stopping reading
+[I 18:36:11.026 LabApp] Terminal 1 closed
+Websocket closed
+TermSocket.open: 2
+TermSocket.open: Opened 2
+[I 21:00:09.867 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 21:04:10.295 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 21:06:10.876 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 21:18:11.799 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 21:26:04.581 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 21:29:50.300 LabApp] 302 GET / (162.142.125.42) 0.62ms
+[I 21:29:50.671 LabApp] 302 GET / (162.142.125.42) 0.65ms
+[I 21:29:51.062 LabApp] 302 GET /lab (162.142.125.42) 0.91ms
+Websocket closed
+[I 01:32:59.220 LabApp] 302 GET / (34.229.218.185) 0.76ms
+[I 01:32:59.407 LabApp] 302 GET /lab (34.229.218.185) 0.85ms
+[I 07:52:49.742 LabApp] New terminal with automatic name: 1
+TermSocket.open: 1
+TermSocket.open: Opened 1
+[I 08:00:52.576 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/main.py
+[I 08:01:21.353 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/main.py
+[I 08:01:57.185 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/main.py
+[I 08:02:18.463 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/main.py
+[I 08:24:42.440 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/Base-RCNN.yaml
+[I 08:25:55.097 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/Base-RCNN.yaml
+[I 08:26:49.242 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/Base-RCNN.yaml
+[I 09:13:47.626 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 09:13:49.455 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 09:27:03.460 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 09:56:01.198 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 09:56:21.921 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 09:57:11.914 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 09:59:12.721 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 10:57:36.210 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/voc/defrcn_det_r101_base2.yaml
+[I 10:58:27.357 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/voc/defrcn_det_r101_base2.yaml
+[I 10:59:15.652 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/voc/defrcn_det_r101_base2.yaml
+Websocket closed
+[I 11:00:31.441 LabApp] EOF on FD 15; stopping reading
+[I 11:00:31.542 LabApp] Terminal 2 closed
+[I 11:00:42.929 LabApp] New terminal with automatic name: 2
+TermSocket.open: 2
+TermSocket.open: Opened 2
+[I 11:02:03.268 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/Base-RCNN.yaml
+[I 11:02:43.793 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/Base-RCNN.yaml
+[I 11:03:04.258 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/voc/defrcn_det_r101_base2.yaml
+[I 11:20:54.945 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/Base-RCNN.yaml
+[I 11:21:17.156 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/configs/Base-RCNN.yaml
+Websocket closed
+TermSocket.open: 2
+TermSocket.open: Opened 2
+[I 11:43:20.164 LabApp] EOF on FD 14; stopping reading
+[I 11:43:20.264 LabApp] Terminal 1 closed
+Websocket closed
+[I 17:27:19.285 LabApp] 302 GET / (192.241.211.236) 0.78ms
+[I 03:43:12.001 LabApp] 302 GET / (92.118.161.57) 0.78ms
+[I 03:43:12.411 LabApp] 302 GET /lab (92.118.161.57) 0.97ms
+[I 06:56:07.158 LabApp] 302 GET / (167.94.138.57) 0.71ms
+[I 06:56:07.565 LabApp] 302 GET / (167.94.138.57) 0.63ms
+[I 06:56:07.941 LabApp] 302 GET /lab (167.94.138.57) 0.82ms
+[I 09:36:48.722 LabApp] Malformed HTTP message from 47.242.77.72: Malformed HTTP request line
+[I 09:36:49.449 LabApp] 302 GET / (47.242.77.72) 0.82ms
+[W 09:39:27.244 LabApp] 404 GET /text4041641289166 (47.242.77.72) 27.48ms referer=None
+[I 09:39:27.246 LabApp] 302 GET / (47.242.77.72) 0.80ms
+[W 09:39:27.246 LabApp] 403 POST /sdk (47.242.77.72): '_xsrf' argument missing from POST
+[W 09:39:27.247 LabApp] 403 POST /sdk (47.242.77.72) 1.79ms referer=None
+[I 09:39:28.018 LabApp] 302 GET / (47.242.77.72) 0.59ms
+[W 09:39:28.067 LabApp] 404 GET /evox/about (47.242.77.72) 1.89ms referer=None
+[W 09:39:28.113 LabApp] 404 GET /HNAP1 (47.242.77.72) 1.88ms referer=None
+[I 09:39:46.486 LabApp] 302 GET / (47.242.77.72) 0.64ms
+[I 09:39:46.843 LabApp] 302 GET /lab (47.242.77.72) 0.75ms
+TermSocket.open: 2
+TermSocket.open: Opened 2
+[I 11:34:46.295 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/main.py
+[I 12:37:22.757 LabApp] New terminal with automatic name: 1
+TermSocket.open: 1
+TermSocket.open: Opened 1
+Websocket closed
+Websocket closed
+[I 17:36:38.188 LabApp] 302 GET / (192.241.196.130) 0.81ms
+TermSocket.open: 1
+TermSocket.open: Opened 1
+TermSocket.open: 2
+TermSocket.open: Opened 2
+[I 18:41:09.290 LabApp] New terminal with automatic name: 3
+TermSocket.open: 3
+TermSocket.open: Opened 3
+[I 18:53:50.028 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 18:59:48.661 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/tools/model_surgery.py
+[I 19:00:18.520 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/tools/model_surgery.py
+[I 19:08:40.124 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/tools/create_config.py
+[I 19:08:49.595 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+Websocket closed
+Websocket closed
+Websocket closed
+[I 01:10:48.945 LabApp] 302 GET / (167.94.138.41) 1.10ms
+[I 01:10:49.323 LabApp] 302 GET / (167.94.138.41) 0.59ms
+[I 01:10:49.697 LabApp] 302 GET /lab (167.94.138.41) 1.01ms
+TermSocket.open: 3
+TermSocket.open: Opened 3
+TermSocket.open: 2
+TermSocket.open: Opened 2
+TermSocket.open: 1
+TermSocket.open: Opened 1
+[W 10:58:34.671 LabApp] WebSocket ping timeout after 119868 ms.
+[W 10:58:36.025 LabApp] WebSocket ping timeout after 119870 ms.
+[W 10:58:36.170 LabApp] WebSocket ping timeout after 119837 ms.
+Websocket closed
+Websocket closed
+Websocket closed
+TermSocket.open: 2
+TermSocket.open: Opened 2
+TermSocket.open: 1
+TermSocket.open: Opened 1
+[I 12:03:48.315 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[W 12:04:38.141 LabApp] 405 CONNECT hotmail-com.olc.protection.outlook.com:25 (89.248.165.52) 2.18ms referer=None
+[I 12:06:53.161 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/tools/extract_results.py
+[I 12:06:56.568 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 12:09:17.361 LabApp] New terminal with automatic name: 4
+TermSocket.open: 4
+TermSocket.open: Opened 4
+[I 12:10:56.994 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 12:30:14.080 LabApp] Saving file at /home/aeen/fewshot/DeFRCN/run_voc.sh
+[I 17:06:54.438 LabApp] The port 9000 is already in use, trying another port.
+[I 17:06:54.439 LabApp] The port 9001 is already in use, trying another port.
+[I 17:06:54.844 LabApp] jupyter_tensorboard extension loaded.
+[I 17:06:54.849 LabApp] JupyterLab extension loaded from /opt/conda/lib/python3.6/site-packages/jupyterlab
+[I 17:06:54.849 LabApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 17:06:54.851 LabApp] [Jupytext Server Extension] NotebookApp.contents_manager_class is (a subclass of) jupytext.TextFileContentsManager already - OK
+[I 17:06:54.851 LabApp] Serving notebooks from local directory: /
+[I 17:06:54.851 LabApp] The Jupyter Notebook is running at:
+[I 17:06:54.851 LabApp] http://hostname:8888/?token=2b23131f02bf06b4491f5bace745e69690cc6d002ae469d3
+[I 17:06:54.851 LabApp]  or http://127.0.0.1:9002/?token=2b23131f02bf06b4491f5bace745e69690cc6d002ae469d3
+[I 17:06:54.851 LabApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 17:06:54.855 LabApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/nbserver-3253-open.html
+    Or copy and paste one of these URLs:
+        http://hostname:8888/?token=2b23131f02bf06b4491f5bace745e69690cc6d002ae469d3
+     or http://127.0.0.1:9002/?token=2b23131f02bf06b4491f5bace745e69690cc6d002ae469d3
