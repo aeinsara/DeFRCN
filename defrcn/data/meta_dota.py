@@ -48,7 +48,7 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
 
     dataset_dicts = []
     ann_keys = ["iscrowd", "bbox", "category_id"]
-
+    
     for (img_dict, anno_dict_list) in imgs_anns:
         record = {}
         record["file_name"] = os.path.join(
@@ -59,6 +59,7 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
         image_id = record["image_id"] = img_dict["id"]
 
         objs = []
+#         print("anno_dict_list = "+str(anno_dict_list)+" "+str(len(anno_dict_list)))
         for anno in anno_dict_list:
             assert anno["image_id"] == image_id
             assert anno.get("ignore", 0) == 0
@@ -69,9 +70,9 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
 #             if obj["category_id"] in id_map:
 #                 obj["category_id"] = id_map[obj["category_id"]]
 #                 objs.append(obj)
-            objs.append(obj) #------------------ aein add
-#             print("anno = "+str(anno))
-#         print("objs = "+str(len(objs))
+            objs.append(obj) #------------------ aein add        
+#             print("objs = "+str(obj["annotations"]))
+
         record["annotations"] = objs
         dataset_dicts.append(record)
 

@@ -16,6 +16,7 @@ from detectron2.utils.logger import create_small_table
 from detectron2.data.datasets.coco import convert_to_coco_json
 from defrcn.evaluation.evaluator import DatasetEvaluator
 from detectron2.data.datasets import register_coco_instances
+from detectron2.data import DatasetCatalog
 
 
 class DOTAEvaluator(DatasetEvaluator):
@@ -29,6 +30,8 @@ class DOTAEvaluator(DatasetEvaluator):
         self._logger = logging.getLogger(__name__)
 
 #         DatasetCatalog.register(dataset_name, dota_function)  ////////////////////// dota
+        if dataset_name in DatasetCatalog.list():
+            DatasetCatalog.remove(dataset_name)
         register_coco_instances(dataset_name, {}, "trainvalno5k.json", "/home/aeen/fewshot/Datasets/dota/dotasplit/datasplit/")
         
         self._metadata = MetadataCatalog.get(dataset_name)
@@ -287,6 +290,6 @@ def _evaluate_predictions_on_coco(coco_gt, coco_results, iou_type, catIds=None):
 
     return coco_eval
 
-def dota_function():
+# def dota_function():
   
-  return list[dict] in the following format
+#   return list[dict] in the following format

@@ -70,9 +70,6 @@ def main(args):
 if __name__ == "__main__":
     args = default_argument_parser().parse_args()
     
-#     gpu_devices = ','.join([str(id) for id in [1,2]])
-#     os.environ["CUDA_VISIBLE_DEVICES"] = gpu_devices
-    
     launch(
         main,
         args.num_gpus,

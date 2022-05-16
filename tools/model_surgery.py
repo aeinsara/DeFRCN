@@ -93,7 +93,7 @@ if __name__ == '__main__':
     elif args.dataset == 'voc':
         TAR_SIZE = 20
     elif args.dataset == 'dota':
-         NOVEL_CLASSES = [13, 14, 15, 16]
+        NOVEL_CLASSES = [13, 14, 15, 16]
         BASE_CLASSES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
         ALL_CLASSES = sorted(BASE_CLASSES + NOVEL_CLASSES)
         IDMAP = {v: i for i, v in enumerate(ALL_CLASSES)}
