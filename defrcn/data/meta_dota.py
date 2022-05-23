@@ -59,7 +59,6 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
         image_id = record["image_id"] = img_dict["id"]
 
         objs = []
-#         print("anno_dict_list = "+str(anno_dict_list)+" "+str(len(anno_dict_list)))
         for anno in anno_dict_list:
             assert anno["image_id"] == image_id
             assert anno.get("ignore", 0) == 0
@@ -71,7 +70,7 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
 #                 obj["category_id"] = id_map[obj["category_id"]]
 #                 objs.append(obj)
             objs.append(obj) #------------------ aein add        
-#             print("objs = "+str(obj["annotations"]))
+#             print("objs ====================== "+str(objs))
 
         record["annotations"] = objs
         dataset_dicts.append(record)
@@ -92,7 +91,7 @@ def register_meta_dota(name, metadata, imgdir, annofile):
     MetadataCatalog.get(name).set(
         json_file=annofile,
         image_root=imgdir,
-        evaluator_type="dota",
+        evaluator_type="coco",
         dirname="datasets/dota",
         **metadata,
     )

@@ -3,7 +3,7 @@
 EXPNAME=$1
 SAVEDIR=checkpoints/dota/${EXPNAME}
 IMAGENET_PRETRAIN=ImageNetPretrained/MSRA/R-101.pkl                           # <-- change it to you path
-IMAGENET_PRETRAIN_TORCH=/data/.pretrain_weights/ImageNetPretrained/torchvision/resnet101-5d3b4d8f.pth  # <-- change it to you path
+IMAGENET_PRETRAIN_TORCH=ImageNetPretrained/torchvision/resnet101-5d3b4d8f.pth  # <-- change it to you path
 
 '''
 # ------------------------------- Base Pre-train ---------------------------------- #
@@ -16,15 +16,13 @@ python3 tools/model_surgery.py --dataset dota --method remove                   
     --src-path ${SAVEDIR}/defrcn_det_r101_base/model_final.pth                        \
     --save-dir ${SAVEDIR}/defrcn_det_r101_base
 
+
 BASE_WEIGHT=${SAVEDIR}/defrcn_det_r101_base/model_reset_remove.pth
-
-
-
 # ------------------------------ Novel Fine-tuning -------------------------------- #
 # --> 1. FSRW-like, i.e. run seed0 10 times (the FSOD results on dota in most papers)
-for repeat_id in 0 # -->1  2 3 4 5 6 7 8 9
+for repeat_id in 0 # 1  2 3 4 5 6 7 8 9
 do
-    for shot in 1 2 3 5 # -->10 30
+    for shot in 1 2 3 5 10 30
     do
         for seed in 0
         do
@@ -41,8 +39,7 @@ do
     done
 done
 '''
-python3 tools/extract_results.py --res-dir ${SAVEDIR}/defrcn_fsod_r101_novel/fsrw-like --shot-list 1 2 3 5
-# --> 10 30  # surmarize all results
+python3 tools/extract_results.py --res-dir ${SAVEDIR}/defrcn_fsod_r101_novel/fsrw-like --shot-list 1 2 3 5 10 30  # surmarize all results
 '''
 
 # ----------------------------- Model Preparation --------------------------------- #

@@ -99,9 +99,9 @@ def register_all_dota(root="/home/aeen/fewshot/Datasets"):
     METASPLITS = [
         ("dota_trainval_all", "dota/trainval1024", "dota/dotasplit/datasplit/trainvalno5k.json"),
         ("dota_trainval_base", "dota/trainval1024", "dota/dotasplit/datasplit/trainvalno5k.json"),
-        ("dota_test_all", "dota/val1024", "dota/dotasplit/datasplit/5k.json"),
-        ("dota_test_base", "dota/val1024", "dota/dotasplit/datasplit/5k.json"),
-        ("dota_test_novel", "dota/val1024", "dota/dotasplit/datasplit/5k.json"),
+        ("dota_test_all", "dota/test1024", "dota/dotasplit/datasplit/5k.json"),
+        ("dota_test_base", "dota/test1024", "dota/dotasplit/datasplit/5k.json"),
+        ("dota_test_novel", "dota/test1024", "dota/dotasplit/datasplit/5k.json"),
     ]
     for prefix in ["all", "novel"]:
         for shot in [1, 2, 3, 5, 10, 30]:

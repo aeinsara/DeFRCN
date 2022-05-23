@@ -20,8 +20,10 @@ class Trainer(DefaultTrainer):
         evaluator_list = []
         evaluator_type = MetadataCatalog.get(dataset_name).evaluator_type
         if evaluator_type == "coco":
-            from defrcn.evaluation import COCOEvaluator
-            evaluator_list.append(COCOEvaluator(dataset_name, True, output_folder))
+#             from defrcn.evaluation import COCOEvaluator
+#             evaluator_list.append(COCOEvaluator(dataset_name, True, output_folder))
+            from defrcn.evaluation import DOTAEvaluator
+            evaluator_list.append(DOTAEvaluator(dataset_name, True, output_folder))
         if evaluator_type == "pascal_voc":
             from defrcn.evaluation import PascalVOCDetectionEvaluator
             return PascalVOCDetectionEvaluator(dataset_name)

@@ -10,6 +10,9 @@ import numpy as np
 from tabulate import tabulate
 from collections import OrderedDict
 from fvcore.common.file_io import PathManager
+from pycocotools.coco import COCO
+from pycocotools.cocoeval import COCOeval
+from detectron2.structures import BoxMode
 from detectron2.utils import comm as comm
 from detectron2.data import MetadataCatalog
 from detectron2.utils.logger import create_small_table
@@ -30,11 +33,14 @@ class DOTAEvaluator(DatasetEvaluator):
         self._logger = logging.getLogger(__name__)
 
 #         DatasetCatalog.register(dataset_name, dota_function)  ////////////////////// dota
-        if dataset_name in DatasetCatalog.list():
+        if dataset_name in DatasetCatalog.list(): # ......sara added beacuse of error "Dataset '{}' is already registered!"
             DatasetCatalog.remove(dataset_name)
-        register_coco_instances(dataset_name, {}, "trainvalno5k.json", "/home/aeen/fewshot/Datasets/dota/dotasplit/datasplit/")
+        print("dataset_name ::::::::::::"+str(dataset_name))
+#         /home/aeen/fewshot/Datasets/dota/dotasplit/datasplit/
+        register_coco_instances(dataset_name, {}, "/home/aeen/fewshot/Datasets/dota/dotasplit/datasplit/5k.json", "/home/aeen/fewshot/Datasets/dota/test1024")
         
         self._metadata = MetadataCatalog.get(dataset_name)
+        print("dataset_name ::::::::::::"+str(self._metadata ))
         if not hasattr(self._metadata, "json_file"):
             self._logger.warning(
                 f"json_file was not found in MetaDataCatalog for '{dataset_name}'")
@@ -49,12 +55,12 @@ class DOTAEvaluator(DatasetEvaluator):
 
         json_file = PathManager.get_local_path(self._metadata.json_file)
         with contextlib.redirect_stdout(io.StringIO()):
-            self._coco_api = COCO(json_file)
-        self._do_evaluation = "annotations" in self._coco_api.dataset
+            self._dota_api = COCO(json_file)
+        self._do_evaluation = "annotations" in self._dota_api.dataset
 
     def reset(self):
         self._predictions = []
-        self._coco_results = []
+        self._dota_results = []
 
     def process(self, inputs, outputs):
         """
@@ -165,7 +171,7 @@ class DOTAEvaluator(DatasetEvaluator):
                     self._results["bbox"]["AP"] = self._results["bbox"]["bAP"]
         else:
             dota_eval = (
-                _evaluate_predictions_on_coco(
+                _evaluate_predictions_on_dota(
                     self._dota_api, self._dota_results, "bbox",
                 )
                 if len(self._dota_results) > 0
@@ -199,7 +205,7 @@ class DOTAEvaluator(DatasetEvaluator):
 
         # the standard metrics
         results = {
-            metric: float(coco_eval.stats[idx] * 100) \
+            metric: float(dota_eval.stats[idx] * 100) \
                 for idx, metric in enumerate(metrics)
         }
         self._logger.info(
@@ -210,7 +216,7 @@ class DOTAEvaluator(DatasetEvaluator):
         if class_names is None or len(class_names) <= 1:
             return results
         # Compute per-category AP
-        precisions = coco_eval.eval["precision"]
+        precisions = dota_eval.eval["precision"]
         # precision has dims (iou, recall, cls, area range, max dets)
         assert len(class_names) == precisions.shape[2]
 
@@ -274,21 +280,21 @@ def instances_to_coco_json(instances, img_id):
     return results
 
 
-def _evaluate_predictions_on_coco(coco_gt, coco_results, iou_type, catIds=None):
+def _evaluate_predictions_on_dota(dota_gt, dota_results, iou_type, catIds=None):
     """
     Evaluate the coco results using COCOEval API.
     """
-    assert len(coco_results) > 0
+    assert len(dota_results) > 0
 
-    coco_dt = coco_gt.loadRes(coco_results)
-    coco_eval = COCOeval(coco_gt, coco_dt, iou_type)
+    dota_dt = dota_gt.loadRes(dota_results)
+    dota_eval = COCOeval(dota_gt, dota_dt, iou_type)
     if catIds is not None:
-        coco_eval.params.catIds = catIds
-    coco_eval.evaluate()
-    coco_eval.accumulate()
-    coco_eval.summarize()
+        dota_eval.params.catIds = catIds
+    dota_eval.evaluate()
+    dota_eval.accumulate()
+    dota_eval.summarize()
 
-    return coco_eval
+    return dota_eval
 
 # def dota_function():
   

@@ -31,8 +31,17 @@ def main():
                 res_info = lineinfos[-2].strip()
                 header = res_info.split(':')[-1].split(',')
             res_info = lineinfos[-1].strip()
-            results.append([fid] + [float(x) for x in res_info.split(':')[-1].split(',')])
-
+            res_list = []
+            for x in res_info.split(':')[-1].split(','):
+                print("x ========== "+x+" "+ x.split('.')[0])
+                if x.split('.')[0] not in [0,1,2,3,4,5,6,7,8,9]:
+                    print("x ========== "+x)
+                    res_list.append(float(x))
+                else:
+                    res_list.append(0.0)
+            results.append([fid] + res_list)
+#             results.append([fid] + [float(x) for x in res_info.split(':')[-1].split(',')])
+        print("results ============= "+str(results))
         results_np = np.array(results)
         avg = np.mean(results_np, axis=0).tolist()
         cid = [1.96 * s / math.sqrt(results_np.shape[0]) for s in np.std(results_np, axis=0)]

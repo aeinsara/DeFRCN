@@ -151,13 +151,13 @@ def print_instances_class_histogram(dataset_dicts, class_names):
     num_classes = len(class_names)
     hist_bins = np.arange(num_classes + 1)
     histogram = np.zeros((num_classes,), dtype=np.int) 
-#     print("dataset_dicts =  "+ str(dataset_dicts)+" " )
+#     print("dataset_dicts =  "+ str(len(dataset_dicts)+" " )
     for entry in dataset_dicts:
         annos = entry["annotations"]
         classes = [x["category_id"] for x in annos]    
-#         print("******************classes = "+str(classes))
 #         classes = [x["category_id"] for x in annos if not x.get("iscrowd", 0)]
-        histogram += np.histogram(classes, bins=hist_bins)[0]
+        histogram += np.histogram(classes, bins=[13,14,15,16,17])[0]
+#          histogram += np.histogram(classes, bins=hist_bins)[0]
 
     N_COLS = min(6, len(class_names) * 2)
 
@@ -207,7 +207,7 @@ def get_detection_dataset_dicts(
     """
     assert len(dataset_names)
     dataset_dicts = [DatasetCatalog.get(dataset_name) for dataset_name in dataset_names]
-#     print("dataset_dicts[0] = "+str(dataset_dicts[0][0]))
+    print("dataset_dicts[0] = "+str(dataset_dicts[0][0]))
     for dataset_name, dicts in zip(dataset_names, dataset_dicts):
         assert len(dicts), "Dataset '{}' is empty!".format(dataset_name)
 
