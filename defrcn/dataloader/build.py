@@ -49,7 +49,7 @@ def filter_images_with_only_crowd_annotations(dataset_dicts):
 
 #     dataset_dicts = [x for x in dataset_dicts if valid(x["annotations"])]
     dataset_dicts = [x for x in dataset_dicts]
-
+#     print("dataset_dicts in build ==== ",dataset_dicts)
     num_after = len(dataset_dicts)
     logger = logging.getLogger(__name__)
     logger.info(
@@ -148,15 +148,30 @@ def print_instances_class_histogram(dataset_dicts, class_names):
         dataset_dicts (list[dict]): list of dataset dicts.
         class_names (list[str]): list of class names (zero-indexed).
     """
+       
     num_classes = len(class_names)
     hist_bins = np.arange(num_classes + 1)
-    histogram = np.zeros((num_classes,), dtype=np.int) 
-#     print("dataset_dicts =  "+ str(len(dataset_dicts)+" " )
+    histogram = np.zeros((num_classes,), dtype=np.int)
     for entry in dataset_dicts:
         annos = entry["annotations"]
-        classes = [x["category_id"] for x in annos]    
+        classes = [x["category_id"] for x in annos if not x.get("iscrowd", 0)]
+        histogram += np.histogram(classes, bins=hist_bins)[0]
+#     num_classes = len(class_names)
+#     hist_bins = np.arange(num_classes + 1)
+#     histogram = np.zeros((num_classes,), dtype=np.int) 
+#     for entry in dataset_dicts:
+#         annos = entry["annotations"]
+#         classes = [x["category_id"] for x in annos] 
 #         classes = [x["category_id"] for x in annos if not x.get("iscrowd", 0)]
-        histogram += np.histogram(classes, bins=[13,14,15,16,17])[0]
+#         histogram += np.histogram(classes, bins=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])[0]
+#         histogram += np.histogram(classes, bins=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])[0]
+#         histogram += np.histogram(classes, bins=[0,1,2,3,4])[0]
+#         histogram += np.histogram(classes, bins=[0,1,2,3,4])[0]  #..... novel
+#         histogram += np.histogram(classes, bins=[0,1,2,3,4,5,6,7,8,9,10,11,12])[0] #.... base
+
+#         histogram += np.histogram(classes, bins=[13,14,15,16,17])[0]  #..... novel
+#         histogram += np.histogram(classes, bins=[1,2,3,4,5,6,7,8,9,10,11,12,13])[0]  #..... base
+
 #          histogram += np.histogram(classes, bins=hist_bins)[0]
 
     N_COLS = min(6, len(class_names) * 2)
@@ -207,7 +222,7 @@ def get_detection_dataset_dicts(
     """
     assert len(dataset_names)
     dataset_dicts = [DatasetCatalog.get(dataset_name) for dataset_name in dataset_names]
-    print("dataset_dicts[0] = "+str(dataset_dicts[0][0]))
+#     print("dataset_dicts[0] = "+str(dataset_dicts[0][10]))
     for dataset_name, dicts in zip(dataset_names, dataset_dicts):
         assert len(dicts), "Dataset '{}' is empty!".format(dataset_name)
 
@@ -226,7 +241,7 @@ def get_detection_dataset_dicts(
 #         dataset_dicts = filter_images_with_only_crowd_annotations(dataset_dicts)
 #     if min_keypoints > 0 and has_instances:
 #         dataset_dicts = filter_images_with_few_keypoints(dataset_dicts, min_keypoints)
-    print("dataset_dicts[0] = "+str(dataset_dicts[0]["annotations"]))
+#     print("dataset_dicts[0][annotations] in build = "+str(dataset_dicts[0]["annotations"]))
     if has_instances:
         try:
             class_names = MetadataCatalog.get(dataset_names[0]).thing_classes    

@@ -2,6 +2,8 @@ import os
 from .meta_voc import register_meta_voc
 from .meta_coco import register_meta_coco
 from .meta_dota import register_meta_dota
+from .meta_dior import register_meta_dior
+
 from .builtin_meta import _get_builtin_metadata
 from detectron2.data import DatasetCatalog, MetadataCatalog
 
@@ -16,6 +18,13 @@ def register_all_coco(root="datasets"):
         ("coco14_test_base", "coco/val2014", "cocosplit/datasplit/5k.json"),
         ("coco14_test_novel", "coco/val2014", "cocosplit/datasplit/5k.json"),
     ]
+#     METASPLITS = [
+#         ("coco14_trainval_all", "coco/train2014", "cocosplit/datasplit/trainvalno5k.json"),
+#         ("coco14_trainval_base", "coco/train2014", "cocosplit/datasplit/trainvalno5k.json"),
+#         ("coco14_test_all", "coco/val2014", "cocosplit/datasplit/5k.json"),
+#         ("coco14_test_base", "coco/val2014", "cocosplit/datasplit/5k.json"),
+#         ("coco14_test_novel", "coco/val2014", "cocosplit/datasplit/5k.json"),
+#     ]
     for prefix in ["all", "novel"]:
         for shot in [1, 2, 3, 5, 10, 30]:
             for seed in range(10):
@@ -94,11 +103,12 @@ def register_all_voc(root="datasets"):
 
         
 # -------- DOTA -------- #
-def register_all_dota(root="/home/aeen/fewshot/Datasets"):
+def register_all_dota(root="/storage/aeen/fewshot/Datasets"):
 
     METASPLITS = [
-        ("dota_trainval_all", "dota/trainval1024", "dota/dotasplit/datasplit/trainvalno5k.json"),
-        ("dota_trainval_base", "dota/trainval1024", "dota/dotasplit/datasplit/trainvalno5k.json"),
+        ("dota_trainval_all", "dota/trainval1024", "dota/dotasplit/datasplit/trainvalno5k_all.json"),
+        ("dota_trainval_base", "dota/trainval1024", "dota/dotasplit/datasplit/trainvalno5k_all.json"),
+        ("dota_trainval_novel", "dota/trainval1024", "dota/dotasplit/datasplit/trainvalno5k_all.json"),
         ("dota_test_all", "dota/test1024", "dota/dotasplit/datasplit/5k.json"),
         ("dota_test_base", "dota/test1024", "dota/dotasplit/datasplit/5k.json"),
         ("dota_test_novel", "dota/test1024", "dota/dotasplit/datasplit/5k.json"),
@@ -117,6 +127,32 @@ def register_all_dota(root="/home/aeen/fewshot/Datasets"):
             os.path.join(root, annofile),
         )
 
+# -------- DIOR -------- #
+def register_all_dior(root="/storage/aeen/fewshot/Datasets"):
+
+    METASPLITS = [
+        ("dior_trainval_all", "dior/JPEGImages-trainval", "dior/Annotations/dior_coco_annotations_trainval.json"),
+        ("dior_trainval_base", "dior/JPEGImages-trainval", "dior/Annotations/dior_coco_annotations_trainval.json"),
+        ("dior_trainval_novel", "dior/JPEGImages-trainval", "dior/Annotations/dior_coco_annotations_trainval.json"),
+        ("dior_test_all", "dior/JPEGImages-test", "dior/Annotations/dior_coco_annotations_test.json"),
+        ("dior_test_base", "dior/JPEGImages-test", "dior/Annotations/dior_coco_annotations_test.json"),
+        ("dior_test_novel", "dior/JPEGImages-test", "dior/Annotations/dior_coco_annotations_test.json"),
+    ]
+    for prefix in ["all", "novel"]:
+        for shot in [1, 2, 3, 5, 10, 30]:
+            for seed in range(10):
+                name = "dior_trainval_{}_{}shot_seed{}".format(prefix, shot, seed)
+                METASPLITS.append((name, "dior/JPEGImages-trainval", ""))
+
+    for name, imgdir, annofile in METASPLITS:
+        register_meta_dior(
+            name,
+            _get_builtin_metadata("dior_fewshot"),
+            os.path.join(root, imgdir),
+            os.path.join(root, annofile),
+        )
+        
 register_all_coco()
 register_all_voc()
 register_all_dota()
+register_all_dior()

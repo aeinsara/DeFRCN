@@ -2,7 +2,8 @@ import os
 import torch
 import argparse
 
-
+os.environ['CUDA_DEVICE_ORDER']= 'PCI_BUS_ID'
+os.environ["CUDA_VISIBLE_DEVICES"]="0,2"
 def surgery_loop(args, surgery):
 
     save_name = args.tar_name + '_' + ('remove' if args.method == 'remove' else 'surgery') + '.pth'
@@ -16,7 +17,10 @@ def surgery_loop(args, surgery):
         del ckpt['optimizer']
     if 'iteration' in ckpt:
         ckpt['iteration'] = 0
-
+#     print("model === ", ckpt['model'].keys())
+#     print("model === ", ckpt['model'].get('roi_heads.box_predictor.bbox_pred.bias').shape)
+#     for i in ckpt['model'].keys():
+#         print(i, " : ", ckpt['model'].get(i).shape)
     if args.method == 'remove':
         for param_name in args.param_name:
             del ckpt['model'][param_name + '.weight']
@@ -25,12 +29,14 @@ def surgery_loop(args, surgery):
     elif args.method == 'randinit':
         tar_sizes = [TAR_SIZE + 1, TAR_SIZE * 4]
         for idx, (param_name, tar_size) in enumerate(zip(args.param_name, tar_sizes)):
+            print('tar_size : ',tar_size)
             surgery(param_name, True, tar_size, ckpt)
             surgery(param_name, False, tar_size, ckpt)
     else:
         raise NotImplementedError
 
     torch.save(ckpt, save_path)
+#     print("model === ", ckpt['model'].get('roi_heads.box_predictor.bbox_pred.bias').shape)
     print('save changed ckpt to {}'.format(save_path))
 
 
@@ -42,6 +48,7 @@ def main(args):
     def surgery(param_name, is_weight, tar_size, ckpt):
         weight_name = param_name + ('.weight' if is_weight else '.bias')
         pretrained_weight = ckpt['model'][weight_name]
+        print('pretrained_weight :: ',  pretrained_weight.shape)
         prev_cls = pretrained_weight.size(0)
         if 'cls_score' in param_name:
             prev_cls -= 1
@@ -51,7 +58,7 @@ def main(args):
             torch.nn.init.normal_(new_weight, 0, 0.01)
         else:
             new_weight = torch.zeros(tar_size)
-        if args.dataset == 'coco' or args.dataset == 'dota':
+        if args.dataset == 'coco' :#or args.dataset == 'dota'
             for idx, c in enumerate(BASE_CLASSES):
                 # idx = i if args.dataset == 'coco' else c
                 if 'cls_score' in param_name:
@@ -71,14 +78,14 @@ def main(args):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', type=str, default='coco', choices=['voc', 'coco', 'dota'])
+    parser.add_argument('--dataset', type=str, default='coco', choices=['voc', 'coco', 'dota', 'dior'])
     parser.add_argument('--src-path', type=str, default='', help='Path to the main checkpoint')
     parser.add_argument('--save-dir', type=str, default='', required=True, help='Save directory')
     parser.add_argument('--method', choices=['remove', 'randinit'], required=True,
                         help='remove = remove the final layer of the base detector. '
                              'randinit = randomly initialize novel weights.')
     parser.add_argument('--param-name', type=str, nargs='+', help='Target parameter names',
-                        default=['roi_heads.box_predictor.cls_score', 'roi_heads.box_predictor.bbox_pred'])
+                        default=['roi_heads.box_predictor.cls_score', 'roi_heads.box_predictor.bbox_pred']) #............ imp
     parser.add_argument('--tar-name', type=str, default='model_reset', help='Name of the new ckpt')
     args = parser.parse_args()
 
@@ -95,9 +102,22 @@ if __name__ == '__main__':
     elif args.dataset == 'dota':
         NOVEL_CLASSES = [13, 14, 15, 16]
         BASE_CLASSES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        ALL_CLASSES = sorted(BASE_CLASSES + NOVEL_CLASSES)
+        
+        '''
+        NOVEL_CLASSES = [1, 2, 3, 4]
+        BASE_CLASSES = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+        '''
+        
+        ALL_CLASSES = sorted(BASE_CLASSES + NOVEL_CLASSES) #+ NOVEL_CLASSES
         IDMAP = {v: i for i, v in enumerate(ALL_CLASSES)}
         TAR_SIZE = 16
+    elif args.dataset == 'dior':
+        NOVEL_CLASSES = [16, 17, 18, 19, 20]
+        BASE_CLASSES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,13, 14, 15]
+        
+        ALL_CLASSES = sorted(BASE_CLASSES + NOVEL_CLASSES) #+ NOVEL_CLASSES
+        IDMAP = {v: i for i, v in enumerate(ALL_CLASSES)}
+        TAR_SIZE = 20                                                      
     else:
         raise NotImplementedError
 

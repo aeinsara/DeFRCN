@@ -35,12 +35,12 @@ class DOTAEvaluator(DatasetEvaluator):
 #         DatasetCatalog.register(dataset_name, dota_function)  ////////////////////// dota
         if dataset_name in DatasetCatalog.list(): # ......sara added beacuse of error "Dataset '{}' is already registered!"
             DatasetCatalog.remove(dataset_name)
-        print("dataset_name ::::::::::::"+str(dataset_name))
-#         /home/aeen/fewshot/Datasets/dota/dotasplit/datasplit/
-        register_coco_instances(dataset_name, {}, "/home/aeen/fewshot/Datasets/dota/dotasplit/datasplit/5k.json", "/home/aeen/fewshot/Datasets/dota/test1024")
+#         print("dataset_name ::::::::::::"+str(dataset_name)) != /home/aeen/fewshot/Datasets/dota/dotasplit/datasplit/5k.json
+#         /home/aeen/fewshot/Datasets/dota/dotasplit/datasplit/ 
+        register_coco_instances(dataset_name, {}, "/storage/aeen/fewshot/Datasets/dota/dotasplit/datasplit/5k.json", "/storage/aeen/fewshot/Datasets/dota/test1024")
         
         self._metadata = MetadataCatalog.get(dataset_name)
-        print("dataset_name ::::::::::::"+str(self._metadata ))
+#         print("dataset_name ::::::::::::"+str(self._metadata ))
         if not hasattr(self._metadata, "json_file"):
             self._logger.warning(
                 f"json_file was not found in MetaDataCatalog for '{dataset_name}'")
@@ -49,9 +49,16 @@ class DOTAEvaluator(DatasetEvaluator):
         self._is_splits = "all" in dataset_name or "base" in dataset_name \
             or "novel" in dataset_name
         self._base_classes = [
-            1,2,3,4,5,6,7,8,9,10,11,12
+            1,2,3,4,5,6,7,8,9,10,11,12 #............... add 1,2,3,4,5,6,7,8,9,10,11,12,
         ]
         self._novel_classes = [13,14,15,16]
+        
+        '''
+        self._base_classes = [
+            5,6,7,8,9,10,11,12,13,14,15,16 #............... add 13,14,15,16
+        ]
+        self._novel_classes = [1,2,3,4]
+        '''
 
         json_file = PathManager.get_local_path(self._metadata.json_file)
         with contextlib.redirect_stdout(io.StringIO()):

@@ -200,42 +200,162 @@ PASCAL_VOC_BASE_CATEGORIES = {
 }
 
 
-DOTA_ALL_CATEGORIES = ["plane", "baseball-diamond", "bridge", "ground-track-field", "small-vehicle",
-     "large-vehicle", "ship", "tennis-court", "basketball-court", "storage-tank", "soccer-ball-field",
-                       "roundabout", "harbor", "swimming-pool", "helicopter", "container-crane"
-]
+# DOTA_ALL_CATEGORIES = ["plane", "baseball-diamond", "bridge", "ground-track-field", "small-vehicle",
+#      "large-vehicle", "ship", "tennis-court", "basketball-court", "storage-tank", "soccer-ball-field",
+#                        "roundabout", "harbor", "swimming-pool", "helicopter", "container-crane" 
+# ]
 
-DOTA_BASE_CATEGORIES = ["plane", "baseball-diamond", "bridge", "ground-track-field", "small-vehicle",
-     "large-vehicle", "ship", "tennis-court", "basketball-court", "storage-tank", "soccer-ball-field", "roundabout"
-]
+DOTA_ALL_CATEGORIES = [{"id": 1, "name": "plane"},
+                        {"id": 2, "name": "baseball-diamond"},
+                        {"id": 3, "name": "bridge"},
+                        {"id": 4, "name": "ground-track-field"},
+                        {"id": 5, "name": "small-vehicle"},
+                        {"id": 6, "name": "large-vehicle"},
+                        {"id": 7, "name": "ship"},
+                        {"id": 8, "name": "tennis-court"},
+                        {"id": 9, "name": "basketball-court"},
+                        {"id": 10, "name": "storage-tank"},
+                        {"id": 11, "name": "soccer-ball-field"},
+                        {"id": 12, "name": "roundabout"},
+                        {"id": 13, "name": "harbor"},
+                        {"id": 14, "name": "swimming-pool"},
+                        {"id": 15, "name": "helicopter"},
+                        {"id": 16, "name": "container-crane"}]
+# DOTA_BASE_CATEGORIES = ["plane", "baseball-diamond", "bridge", "ground-track-field", "small-vehicle",
+#      "large-vehicle", "ship", "tennis-court", "basketball-court", "storage-tank", "soccer-ball-field", "roundabout" #add , "harbor", "swimming-pool", "helicopter", "container-crane"
+
+# split 1 - DOTA
+
+DOTA_BASE_CATEGORIES = [{"id": 1, "name": "plane"},
+                        {"id": 2, "name": "baseball-diamond"},
+                        {"id": 3, "name": "bridge"},
+                        {"id": 4, "name": "ground-track-field"},
+                        {"id": 5, "name": "small-vehicle"},
+                        {"id": 6, "name": "large-vehicle"},
+                        {"id": 7, "name": "ship"},
+                        {"id": 8, "name": "tennis-court"},
+                        {"id": 9, "name": "basketball-court"},
+                        {"id": 10, "name": "storage-tank"},
+                        {"id": 11, "name": "soccer-ball-field"},
+                        {"id": 12, "name": "roundabout"}]
 
 # Novel DOTA categories
-DOTA_NOVEL_CATEGORIES = ["harbor", "swimming-pool", "helicopter", "container-crane"
-]
+DOTA_NOVEL_CATEGORIES = [{"id": 13, "name": "harbor"},
+                        {"id": 14, "name": "swimming-pool"},
+                        {"id": 15, "name": "helicopter"},
+                        {"id": 16, "name": "container-crane"}]
+'''
+# split 2 - DOTA
+
+DOTA_BASE_CATEGORIES = [
+                        {"id": 5, "name": "small-vehicle"},
+                        {"id": 6, "name": "large-vehicle"},
+                        {"id": 7, "name": "ship"},
+                        {"id": 8, "name": "tennis-court"},
+                        {"id": 9, "name": "basketball-court"},
+                        {"id": 10, "name": "storage-tank"},
+                        {"id": 11, "name": "soccer-ball-field"},
+                        {"id": 12, "name": "roundabout"},
+                        {"id": 13, "name": "harbor"},
+                        {"id": 14, "name": "swimming-pool"},
+                        {"id": 15, "name": "helicopter"},
+                        {"id": 16, "name": "container-crane"}]
+
+# Novel DOTA categories
+DOTA_NOVEL_CATEGORIES = [{"id": 1, "name": "plane"},
+                        {"id": 2, "name": "baseball-diamond"},
+                        {"id": 3, "name": "bridge"},
+                        {"id": 4, "name": "ground-track-field"}]
+'''
+'''
+# split 3 - DOTA
+
+DOTA_BASE_CATEGORIES = [{"id": 1, "name": "plane"},
+                        {"id": 2, "name": "baseball-diamond"},
+                        {"id": 3, "name": "bridge"},
+                        {"id": 4, "name": "ground-track-field"},
+                        {"id": 9, "name": "basketball-court"},
+                        {"id": 10, "name": "storage-tank"},
+                        {"id": 11, "name": "soccer-ball-field"},
+                        {"id": 12, "name": "roundabout"},
+                        {"id": 13, "name": "harbor"},
+                        {"id": 14, "name": "swimming-pool"},
+                        {"id": 15, "name": "helicopter"},
+                        {"id": 16, "name": "container-crane"}]
+
+# Novel DOTA categories
+DOTA_NOVEL_CATEGORIES = [ {"id": 5, "name": "small-vehicle"},
+                        {"id": 6, "name": "large-vehicle"},
+                        {"id": 7, "name": "ship"},
+                        {"id": 8, "name": "tennis-court"}]
+'''
+'''
+# split 4 - DOTA
+
+DOTA_BASE_CATEGORIES = [{"id": 1, "name": "plane"},
+                        {"id": 2, "name": "baseball-diamond"},
+                        {"id": 3, "name": "bridge"},
+                        {"id": 4, "name": "ground-track-field"},
+                        {"id": 5, "name": "small-vehicle"},
+                        {"id": 6, "name": "large-vehicle"},
+                        {"id": 7, "name": "ship"},
+                        {"id": 8, "name": "tennis-court"},
+                        {"id": 13, "name": "harbor"},
+                        {"id": 14, "name": "swimming-pool"},
+                        {"id": 15, "name": "helicopter"},
+                        {"id": 16, "name": "container-crane"}]
+
+# Novel DOTA categories
+DOTA_NOVEL_CATEGORIES = [ {"id": 9, "name": "basketball-court"},
+                        {"id": 10, "name": "storage-tank"},
+                        {"id": 11, "name": "soccer-ball-field"},
+                        {"id": 12, "name": "roundabout"}]
+'''
+
+DIOR_ALL_CATEGORIES = [{"id": 1, "name": "windmill"},
+                        {"id": 2, "name": "harbor"},
+                        {"id": 3, "name": "ship"},
+                        {"id": 4, "name": "basketballcourt"},
+                        {"id": 5, "name": "vehicle"},
+                        {"id": 6, "name": "baseballfield"},
+                        {"id": 7, "name": "dam"},
+                        {"id": 8, "name": "storagetank"},
+                        {"id": 9, "name": "Expressway-Service-area"},
+                        {"id": 10, "name": "chimney"},
+                        {"id": 11, "name": "airplane"},
+                        {"id": 12, "name": "tenniscourt"},
+                        {"id": 13, "name": "Expressway-toll-station"},
+                        {"id": 14, "name": "airport"},
+                        {"id": 15, "name": "stadium"},
+                        {"id": 16, "name": "groundtrackfield"},
+                        {"id": 17, "name": "overpass"},
+                        {"id": 18, "name": "trainstation"},
+                        {"id": 19, "name": "bridge"},
+                        {"id": 20, "name": "golffield"}]
 
 
-# DOTA_CATEGORIES = [
-#     {"color": [220, 20, 60], "isthing": 1, "id": 1, "name": "plane"},
-#     {"color": [119, 11, 32], "isthing": 1, "id": 2, "name": "baseball-diamond"},
-#     {"color": [0, 0, 142], "isthing": 1, "id": 3, "name": "bridge"},
-#     {"color": [0, 0, 230], "isthing": 1, "id": 4, "name": "ground-track-field"},
-#     {"color": [106, 0, 228], "isthing": 1, "id": 5, "name": "small-vehicle"},
-#     {"color": [0, 60, 100], "isthing": 1, "id": 6, "name": "large-vehicle"},
-#     {"color": [0, 80, 100], "isthing": 1, "id": 7, "name": "ship"},
-#     {"color": [0, 0, 70], "isthing": 1, "id": 8, "name": "tennis-court"},
-#     {"color": [0, 0, 192], "isthing": 1, "id": 9, "name": "basketball-court"},
-#     {"color": [250, 170, 30], "isthing": 1, "id": 10, "name": "storage-tank"},
-#     {"color": [100, 170, 30], "isthing": 1, "id": 11, "name": "soccer-ball-field"},
-#     {"color": [220, 220, 0], "isthing": 1, "id": 12, "name": "roundabout"},
-# ]
+DIOR_BASE_CATEGORIES = [{"id": 1, "name": "windmill"},
+                        {"id": 2, "name": "harbor"},
+                        {"id": 3, "name": "ship"},
+                        {"id": 4, "name": "basketballcourt"},
+                        {"id": 5, "name": "vehicle"},
+                        {"id": 6, "name": "baseballfield"},
+                        {"id": 7, "name": "dam"},
+                        {"id": 8, "name": "storagetank"},
+                        {"id": 9, "name": "Expressway-Service-area"},
+                        {"id": 10, "name": "chimney"},
+                        {"id": 11, "name": "airplane"},
+                        {"id": 12, "name": "tenniscourt"},
+                        {"id": 13, "name": "Expressway-toll-station"},
+                        {"id": 14, "name": "airport"},
+                        {"id": 15, "name": "stadium"}]
 
-# # Novel DOTA categories
-# DOTA_NOVEL_CATEGORIES = [
-#     {"color": [220, 20, 60], "isthing": 1, "id": 13, "name": "harbor"},
-#     {"color": [119, 11, 32], "isthing": 1, "id": 14, "name": "swimming-pool"},
-#     {"color": [0, 0, 142], "isthing": 1, "id": 15, "name": "helicopter"},
-#     {"color": [0, 0, 230], "isthing": 1, "id": 16, "name": "container-crane"},
-# ]
+DIOR_NOVEL_CATEGORIES = [{"id": 16, "name": "groundtrackfield"},
+                        {"id": 17, "name": "overpass"},
+                        {"id": 18, "name": "trainstation"},
+                        {"id": 19, "name": "bridge"},
+                        {"id": 20, "name": "golffield"}]
+
 
 def _get_coco_instances_meta():
     thing_ids = [k["id"] for k in COCO_CATEGORIES if k["isthing"] == 1]
@@ -251,19 +371,29 @@ def _get_coco_instances_meta():
     }
     return ret
 
-# def _get_dota_instances_meta():
-#     thing_ids = [k["id"] for k in DOTA_CATEGORIES if k["isthing"] == 1]
-#     thing_colors = [k["color"] for k in DOTA_CATEGORIES if k["isthing"] == 1]
-#     assert len(thing_ids) == 16, len(thing_ids)
-#     # Mapping from the incontiguous COCO category id to an id in [0, 79]
-#     thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
-#     thing_classes = [k["name"] for k in DOTA_CATEGORIES if k["isthing"] == 1]
-#     ret = {
-#         "thing_dataset_id_to_contiguous_id": thing_dataset_id_to_contiguous_id,
-#         "thing_classes": thing_classes,
-#         "thing_colors": thing_colors,
-#     }
-#     return ret
+def _get_dota_instances_meta():
+    thing_ids = [k["id"] for k in DOTA_ALL_CATEGORIES]
+    assert len(thing_ids) == 16, len(thing_ids)
+    # Mapping from the incontiguous COCO category id to an id in [0, 15]
+    thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
+    thing_classes = [k["name"] for k in DOTA_ALL_CATEGORIES]
+    ret = {
+        "thing_dataset_id_to_contiguous_id": thing_dataset_id_to_contiguous_id,
+        "thing_classes": thing_classes,
+    }
+    return ret
+
+def _get_dior_instances_meta():
+    thing_ids = [k["id"] for k in DIOR_ALL_CATEGORIES]
+    assert len(thing_ids) == 20, len(thing_ids)
+    # Mapping from the incontiguous COCO category id to an id in [0, 15]
+    thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
+    thing_classes = [k["name"] for k in DIOR_ALL_CATEGORIES]
+    ret = {
+        "thing_dataset_id_to_contiguous_id": thing_dataset_id_to_contiguous_id,
+        "thing_classes": thing_classes,
+    }
+    return ret
 
 def _get_coco_fewshot_instances_meta():
     ret = _get_coco_instances_meta()
@@ -292,32 +422,47 @@ def _get_voc_fewshot_instances_meta():
     }
     return ret
 
-# def _get_dota_fewshot_instances_meta():
-#     ret = _get_dota_instances_meta()
-#     novel_ids = [k["id"] for k in DOTA_NOVEL_CATEGORIES if k["isthing"] == 1]
-#     novel_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(novel_ids)}
-#     novel_classes = [
-#         k["name"] for k in DOTA_NOVEL_CATEGORIES if k["isthing"] == 1
-#     ]
-#     base_categories = [
-#         k for k in DOTA_CATEGORIES if k["isthing"] == 1 and k["name"] not in novel_classes
-#     ]
-#     base_ids = [k["id"] for k in base_categories]
-#     base_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(base_ids)}
-#     base_classes = [k["name"] for k in base_categories]
-#     ret["novel_dataset_id_to_contiguous_id"] = novel_dataset_id_to_contiguous_id
-#     ret["novel_classes"] = novel_classes
-#     ret["base_dataset_id_to_contiguous_id"] = base_dataset_id_to_contiguous_id
-#     ret["base_classes"] = base_classes
-#     return ret
-
 def _get_dota_fewshot_instances_meta():
-    ret = {
-        "thing_classes": DOTA_ALL_CATEGORIES,
-        "novel_classes": DOTA_NOVEL_CATEGORIES,
-        "base_classes": DOTA_BASE_CATEGORIES,
-    }
+    ret = _get_dota_instances_meta()
+    novel_ids = [k["id"] for k in DOTA_NOVEL_CATEGORIES]
+    novel_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(novel_ids)}
+    novel_classes = [
+        k["name"] for k in DOTA_NOVEL_CATEGORIES]
+    base_categories = [
+         k for k in DOTA_BASE_CATEGORIES ]
+    base_ids = [k["id"] for k in base_categories]
+    base_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(base_ids)}
+    base_classes = [k["name"] for k in base_categories]
+    ret["novel_dataset_id_to_contiguous_id"] = novel_dataset_id_to_contiguous_id
+    ret["novel_classes"] = novel_classes
+    ret["base_dataset_id_to_contiguous_id"] = base_dataset_id_to_contiguous_id
+    ret["base_classes"] = base_classes
     return ret
+
+def _get_dior_fewshot_instances_meta():
+    ret = _get_dior_instances_meta()
+    novel_ids = [k["id"] for k in DIOR_NOVEL_CATEGORIES]
+    novel_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(novel_ids)}
+    novel_classes = [
+        k["name"] for k in DIOR_NOVEL_CATEGORIES]
+    base_categories = [
+         k for k in DIOR_BASE_CATEGORIES ]
+    base_ids = [k["id"] for k in base_categories]
+    base_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(base_ids)}
+    base_classes = [k["name"] for k in base_categories]
+    ret["novel_dataset_id_to_contiguous_id"] = novel_dataset_id_to_contiguous_id
+    ret["novel_classes"] = novel_classes
+    ret["base_dataset_id_to_contiguous_id"] = base_dataset_id_to_contiguous_id
+    ret["base_classes"] = base_classes
+    return ret
+
+# def _get_dota_fewshot_instances_meta():
+#     ret = {
+#         "thing_classes": DOTA_ALL_CATEGORIES,
+#         "novel_classes": DOTA_NOVEL_CATEGORIES,
+#         "base_classes": DOTA_BASE_CATEGORIES,
+#     }
+#     return ret
 
 
 def _get_builtin_metadata(dataset_name):
@@ -329,4 +474,6 @@ def _get_builtin_metadata(dataset_name):
         return _get_voc_fewshot_instances_meta()
     elif dataset_name == "dota_fewshot":
         return _get_dota_fewshot_instances_meta()
+    elif dataset_name == "dior_fewshot":
+        return _get_dior_fewshot_instances_meta()
     raise KeyError("No built-in metadata for dataset {}".format(dataset_name))

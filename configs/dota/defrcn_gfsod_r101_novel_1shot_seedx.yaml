@@ -20,7 +20,7 @@ DATASETS:
   TRAIN: ('dota_trainval_all_1shot_seedx',)
   TEST: ('dota_test_all',)
 SOLVER:
-  IMS_PER_BATCH: 4
+  IMS_PER_BATCH: 8
   BASE_LR: 0.01
   STEPS: (2000,)
   MAX_ITER: 2400

@@ -13,14 +13,14 @@ MODEL:
   ROI_HEADS:
     ENABLE_DECOUPLE: True
     BACKWARD_SCALE: 0.01
-    NUM_CLASSES: 20
+    NUM_CLASSES: 4
     FREEZE_FEAT: True
     CLS_DROPOUT: True
 DATASETS:
   TRAIN: ('dota_trainval_novel_10shot_seedx',)
   TEST: ('dota_test_novel',)
 SOLVER:
-  IMS_PER_BATCH: 4
+  IMS_PER_BATCH: 8
   BASE_LR: 0.01
   STEPS: (3200,)
   MAX_ITER: 4000

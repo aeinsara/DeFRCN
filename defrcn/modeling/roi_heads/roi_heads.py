@@ -168,6 +168,7 @@ class ROIHeads(torch.nn.Module):
                    then the ground-truth box is random)
                 Other fields such as "gt_classes" that's included in `targets`.
         """
+#         print("target ::::::::::::::: ", targets[0].__dict__.keys())
         gt_boxes = [x.gt_boxes for x in targets]
         # Augment proposals with ground-truth boxes.
         # In the case of learned proposals (e.g., RPN), when training starts
@@ -354,7 +355,6 @@ class Res5ROIHeads(ROIHeads):
             feature_pooled
         )
         del feature_pooled
-
         outputs = FastRCNNOutputs(
             self.box2box_transform,
             pred_class_logits,

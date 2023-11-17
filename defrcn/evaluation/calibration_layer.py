@@ -26,8 +26,9 @@ class PrototypicalCalibrationBlock:
         self.dataloader = build_detection_test_loader(self.cfg, self.cfg.DATASETS.TRAIN[0])
         self.roi_pooler = ROIPooler(output_size=(1, 1), scales=(1 / 32,), sampling_ratio=(0), pooler_type="ROIAlignV2")
         self.prototypes = self.build_prototypes()
-
         self.exclude_cls = self.clsid_filter()
+#         self.exclude_cls = list(range(0, 13))
+        print("exclude_ids ===== ", self.exclude_cls)
 
     def build_model(self):
         logger.info("Loading ImageNet Pre-train Model from {}".format(self.cfg.TEST.PCB_MODELPATH))
@@ -52,8 +53,9 @@ class PrototypicalCalibrationBlock:
             img_h, img_w = img.shape[0], img.shape[1]
             ratio = img_h / inputs[0]['instances'].image_size[0]
             inputs[0]['instances'].gt_boxes.tensor = inputs[0]['instances'].gt_boxes.tensor * ratio
-            boxes = [x["instances"].gt_boxes.to(self.device) for x in inputs]
 
+
+            boxes = [x["instances"].gt_boxes.to(self.device) for x in inputs]
             # extract roi features
             features = self.extract_roi_features(img, boxes)
             all_features.append(features.cpu().data)
@@ -96,9 +98,8 @@ class PrototypicalCalibrationBlock:
         images = [(img / 255. - mean) / std]
         images = ImageList.from_tensors(images, 0)
         conv_feature = self.imagenet_model(images.tensor[:, [2, 1, 0]])[1]  # size: BxCxHxW
-
+#         print("boxes.dim() ,boxes.size(1) :: ",boxes.dim() ,boxes.size(1))
         box_features = self.roi_pooler([conv_feature], boxes).squeeze(2).squeeze(2)
-
         activation_vectors = self.imagenet_model.fc(box_features)
 
         return activation_vectors
@@ -106,7 +107,7 @@ class PrototypicalCalibrationBlock:
     def execute_calibration(self, inputs, dts):
 
         img = cv2.imread(inputs[0]['file_name'])
-
+#         print("\n\ndts[0]['instances'] :::::::::::::: ", dts[0]['instances'])
         ileft = (dts[0]['instances'].scores > self.cfg.TEST.PCB_UPPER).sum()
         iright = (dts[0]['instances'].scores > self.cfg.TEST.PCB_LOWER).sum()
         assert ileft <= iright
@@ -116,10 +117,10 @@ class PrototypicalCalibrationBlock:
 
         for i in range(ileft, iright):
             tmp_class = int(dts[0]['instances'].pred_classes[i])
+#             print('tmp_class ====== ', tmp_class)
             if tmp_class in self.exclude_cls:
                 continue
-            tmp_cos = cosine_similarity(features[i - ileft].cpu().data.numpy().reshape((1, -1)),
-                                        self.prototypes[tmp_class].cpu().data.numpy())[0][0]
+            tmp_cos = cosine_similarity(features[i - ileft].cpu().data.numpy().reshape((1, -1)), self.prototypes[tmp_class].cpu().data.numpy())[0][0]
             dts[0]['instances'].scores[i] = dts[0]['instances'].scores[i] * self.alpha + tmp_cos * (1 - self.alpha)
         return dts
 
@@ -134,6 +135,10 @@ class PrototypicalCalibrationBlock:
                                66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79]
             elif 'voc' in dsname:
                 exclude_ids = list(range(0, 15))
+            elif 'dota' in dsname:
+                exclude_ids = list(range(0, 13))
+            elif 'dior' in dsname:
+                exclude_ids = list(range(0, 15)) # ................ 15
             else:
                 raise NotImplementedError
         return exclude_ids

@@ -1,5 +1,5 @@
 """Implement the CosineSimOutputLayers and  FastRCNNOutputLayers with FC layers."""
-
+import pdb
 import torch
 import logging
 import numpy as np
@@ -224,7 +224,15 @@ class FastRCNNOutputs(object):
         Returns:
             scalar Tensor
         """
-        self._log_accuracy()
+#         self._log_accuracy()
+#         try:
+#             c = F.cross_entropy(
+#             self.pred_class_logits, self.gt_classes, reduction="mean")
+       
+#         except RuntimeError:    
+#             pdb.set_trace()
+#         return c
+
         return F.cross_entropy(
             self.pred_class_logits, self.gt_classes, reduction="mean"
         )
@@ -236,9 +244,14 @@ class FastRCNNOutputs(object):
         Returns:
             scalar Tensor
         """
-        gt_proposal_deltas = self.box2box_transform.get_deltas(
-            self.proposals.tensor, self.gt_boxes.tensor
-        )
+        # print('=-===-=-=-======== ',self.proposals.tensor.shape, self.gt_boxes.tensor.shape)
+        # # pdb.set_trace()
+        # try:
+        #     gt_proposal_deltas = self.box2box_transform.get_deltas(self.proposals.tensor, self.gt_boxes.tensor)
+        # except RuntimeError:
+        #     pdb.set_trace()
+        gt_proposal_deltas = self.box2box_transform.get_deltas(self.proposals.tensor, self.gt_boxes.tensor)
+
         box_dim = gt_proposal_deltas.size(1)  # 4 or 5
         cls_agnostic_bbox_reg = self.pred_proposal_deltas.size(1) == box_dim
         device = self.pred_proposal_deltas.device
@@ -375,13 +388,13 @@ class FastRCNNOutputLayers(nn.Module):
                 Example box dimensions: 4 for regular XYXY boxes and 5 for rotated XYWHA boxes
         """
         super(FastRCNNOutputLayers, self).__init__()
-
         if not isinstance(input_size, int):
             input_size = np.prod(input_size)
 
         # The prediction layer for num_classes foreground classes and one
         # background class
         # (hence + 1)
+        print("----++++--------======= num_classes : ", num_classes)
         self.cls_score = nn.Linear(input_size, num_classes + 1)
         num_bbox_reg_classes = 1 if cls_agnostic_bbox_reg else num_classes
         self.bbox_pred = nn.Linear(input_size, num_bbox_reg_classes * box_dim)
@@ -400,6 +413,7 @@ class FastRCNNOutputLayers(nn.Module):
         proposal_deltas = self.bbox_pred(x)
 
         if self._do_cls_dropout:
+#             print("iiiiiiiiiiiiiiiiiiiiiiiiiiiin roi_heads/fast_rcnn _do_cls_dropout=", self._do_cls_dropout)
             x = F.dropout(x, self._dropout_ratio, training=self.training)
         scores = self.cls_score(x)
 

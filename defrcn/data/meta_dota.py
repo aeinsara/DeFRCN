@@ -17,7 +17,7 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
         imgid2info = {}
         shot = dataset_name.split('_')[-2].split('shot')[0]
         seed = int(dataset_name.split('_seed')[-1])
-        split_dir = os.path.join('/home/aeen/fewshot/Datasets/dota/', 'dotasplit', 'seed{}'.format(seed))
+        split_dir = os.path.join('/storage/aeen/fewshot/Datasets/dota', 'dotasplit', 'seed{}'.format(seed))
         for idx, cls in enumerate(metadata["thing_classes"]):
             json_file = os.path.join(split_dir, "full_box_{}shot_{}_trainval.json".format(shot, cls))
             json_file = PathManager.get_local_path(json_file)
@@ -44,7 +44,7 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
         anns = [coco_api.imgToAnns[img_id] for img_id in img_ids]
 
     imgs_anns = list(zip(imgs, anns))
-#     id_map = metadata["thing_dataset_id_to_contiguous_id"]////////////////////////////////////////////////
+    id_map = metadata["thing_dataset_id_to_contiguous_id"]#////////////////////////////////////////////////
 
     dataset_dicts = []
     ann_keys = ["iscrowd", "bbox", "category_id"]
@@ -66,10 +66,10 @@ def load_dota_json(json_file, image_root, metadata, dataset_name):
             obj = {key: anno[key] for key in ann_keys if key in anno}
 
             obj["bbox_mode"] = BoxMode.XYWH_ABS
-#             if obj["category_id"] in id_map:
-#                 obj["category_id"] = id_map[obj["category_id"]]
-#                 objs.append(obj)
-            objs.append(obj) #------------------ aein add        
+            if obj["category_id"] in id_map:
+                obj["category_id"] = id_map[obj["category_id"]]
+                objs.append(obj)
+#             objs.append(obj) #------------------ aein add        
 #             print("objs ====================== "+str(objs))
 
         record["annotations"] = objs
@@ -86,6 +86,10 @@ def register_meta_dota(name, metadata, imgdir, annofile):
 
     if "_base" in name or "_novel" in name:
         split = "base" if "_base" in name else "novel"
+#         metadata["thing_classes"] = metadata["{}_classes".format(split)]
+        metadata["thing_dataset_id_to_contiguous_id"] = metadata[
+            "{}_dataset_id_to_contiguous_id".format(split)
+        ]
         metadata["thing_classes"] = metadata["{}_classes".format(split)]
 
     MetadataCatalog.get(name).set(
@@ -95,4 +99,5 @@ def register_meta_dota(name, metadata, imgdir, annofile):
         dirname="datasets/dota",
         **metadata,
     )
+    
     

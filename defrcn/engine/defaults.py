@@ -290,6 +290,7 @@ class DefaultTrainer(SimpleTrainer):
             ).get("iteration", -1)
             + 1
         )
+        print("self.start_iter :::::: ", self.start_iter)
 
     def build_hooks(self):
         """

@@ -71,6 +71,7 @@ class DatasetMapper:
         self.keypoint_hflip_indices = keypoint_hflip_indices
         self.proposal_topk          = precomputed_proposal_topk
         self.recompute_boxes        = recompute_boxes
+        print('\n\n---------------------------- in dataset_mapper .............................\nself.use_instance_mask ,self.recompute_boxes :::::: ', self.use_instance_mask , self.recompute_boxes,'\n\n')
         # fmt: on
         logger = logging.getLogger(__name__)
         mode = "training" if is_train else "inference"

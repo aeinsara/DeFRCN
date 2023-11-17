@@ -4,7 +4,7 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', type=str, default='coco14', help='', choices=['coco14', 'voc', 'dota'])
+    parser.add_argument('--dataset', type=str, default='coco14', help='', choices=['coco14', 'voc', 'dota', 'dior'])
     parser.add_argument('--config_root', type=str, default='', help='the path to config dir')
     parser.add_argument('--shot', type=int, default=1, help='shot to run experiments over')
     parser.add_argument('--seed', type=int, default=0, help='seed to run experiments over')
@@ -57,6 +57,14 @@ def main():
         for i, lineinfo in enumerate(yaml_info):
             if '  TRAIN: ' in lineinfo:
                 _str_ = '  TRAIN: ("dota_trainval_{}_{}shot_seed{}", )\n'
+                yaml_info[i] = _str_.format(suffix, args.shot, args.seed)
+    elif args.dataset in ['dior']:
+        name_template = 'defrcn_{}_r101_novel_{}shot_seedx.yaml'
+        yaml_path = os.path.join(args.config_root, name_template.format(args.setting, args.shot))
+        yaml_info = load_config_file(yaml_path)
+        for i, lineinfo in enumerate(yaml_info):
+            if '  TRAIN: ' in lineinfo:
+                _str_ = '  TRAIN: ("dior_trainval_{}_{}shot_seed{}", )\n'
                 yaml_info[i] = _str_.format(suffix, args.shot, args.seed)
     else:
         raise NotImplementedError
